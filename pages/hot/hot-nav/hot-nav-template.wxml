@@ -1,0 +1,14 @@
+<template name="hotNav">
+  <view class="nav" style="margin-top: {{navMT}}rpx">
+    <scroll-view class="scroll-view_H" scroll-x="true">
+      <block wx:key="key" wx:for="{{navClass}}" wx:for-item="item">
+        <view class="scroll-view-item_H {{item.checked?'scroll-view-item_selected':''}}" data-techId="{{item.technologyId}}" catchtap="onNavClass">{{item.name}}</view>
+      </block>
+    </scroll-view>
+    <scroll-view class="scroll-view_L" scroll-x="true">
+      <block wx:key="key" wx:for="{{blogs}}" wx:for-item="item">
+        <view class="scroll-view-item_L {{item.checked?'scroll-view-itemL_selected':''}}" data-blogId="{{item.blogId}}" catchtap="onNavBlog">{{item.name}}</view>
+      </block>
+    </scroll-view>
+  </view>
+</template>

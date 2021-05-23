@@ -1,0 +1,34 @@
+<!--pages/blog-detail/blog-detail.wxml-->
+<import src="../template/blog-bottom/blog-bottom-template.wxml" />
+<import src="../template/blog-comment/blog-comment-template.wxml" />
+<import src="../template/more-item/more-item-template.wxml" />
+<view>
+  <view class="container">
+    <view class="title-container">
+      <text class="title">{{blogDetail.title}}</text>
+    </view>
+    <view class="author">
+      <view class="author-left">
+        <image src="{{blogDetail.bloger.avatarUrl}}" class="avatar"></image>
+        <text class="author-name">{{blogDetail.bloger.name}}</text>
+        <text class="context-time">{{blogDetail.time}}</text>
+      </view>
+      <view class="author-right" data-blogerId="{{blogDetail.blogerId}}" catchtap="lookAuthor">
+        <text wx:if="{{blogDetail.isFollow}}" class="looked-author">已关注</text>
+        <text wx:else class="look-author">关注</text>
+      </view>
+    </view>
+    <view class="content-container">
+      <text class="content">{{blogDetail.indro}}</text>
+    </view>
+    <view class="blog-link" catchtap="jump">原文链接：
+      <text class="blog-link-text" data-url="{{blogDetail.link}}">{{blogDetail.link}}</text>
+    </view>
+  </view>
+  <template is="blogComment" data="{{comments}}" />
+  <block wx:for="{{more}}" wx:key="key" wx:for-item="item">
+    <template is="moreItem" data="{{...item}}"/>
+  </block>
+  <view class="detail-pos"></view>
+  <template is="blogBottom" data="{{...blogDetail}}" />
+</view>

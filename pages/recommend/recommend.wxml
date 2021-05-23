@@ -1,0 +1,17 @@
+<!--pages/recommend/recommend.wxml-->
+<import src="../template/blog-item/blog-item-template.wxml" />
+<view class="recommend">
+  <view class="recommend-nav">
+    <view class="recommend-nav-title">
+      <view class="{{status === 1?'recomend-nav-title-selected':''}}" catchtap="maybe">你可能喜欢</view>
+      <view class="{{status === 0?'recomend-nav-title-selected':''}}" catchtap="allLook">大家都在看</view>
+    </view>
+    <view class="recommend-nav-change" catchtap="change">
+      <text class="iconfont iconweibiaoti--"></text>
+      <text>换一换</text>
+    </view>
+  </view>
+  <block wx:for="{{contents}}" wx:key="key" wx:for-item="item">
+    <template is="blogItem" data="{{...item}}" />
+  </block>
+</view>

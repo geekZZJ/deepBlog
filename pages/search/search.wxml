@@ -1,0 +1,32 @@
+<!--pages/search/search.wxml-->
+<view class="search">
+  <view class="search-wrap">
+    <text class="iconfont iconsousuo search-icon"></text>
+    <input class="search-input" bindinput="controlClose" confirm-type="search" bindconfirm="search" placeholder-class="place-search" type="text" value="{{searchInput}}" placeholder="搜索内容" focus="true" />
+    <view class="delete-search" catchtap="clearContent">
+      <text wx:if="{{isShow}}" class="iconfont iconguanbi delete-icon"></text>
+      <text wx:else></text>
+    </view>
+  </view>
+  <view class="search-pos"></view>
+  <view class="search-title">博客热搜</view>
+  <view class="hot-items">
+    <block wx:key="key" wx:for="{{keywords}}" wx:for-item="item">
+      <text class="hot-item" data-keyword="{{item.content}}" catchtap="hotSearch">{{item.content}}</text>
+    </block>
+  </view>
+  <view class="search-history" wx:if="{{history.length>0}}">
+    <view>搜索历史</view>
+    <view wx:if="{{true}}" class="clear" catchtap="clearAll">全部清空</view>
+    <view wx:else></view>
+  </view>
+  <view class="history-list">
+    <block wx:key="key" wx:for="{{history}}" wx:for-item="item">
+      <view class="history-list-item">
+        <text class="iconfont iconsousuo item-search-icon"></text>
+        <text class="item-search-title" data-history="{{item.content}}" catchtap="historySearch">{{item.content}}</text>
+        <text class="item-search-clear" data-content="{{item.content}}" catchtap="closeHistory">x</text>
+      </view>
+    </block>
+  </view>
+</view>

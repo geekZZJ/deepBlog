@@ -1,0 +1,44 @@
+<!--pages/my/my.wxml-->
+<import src="../template/blog-item/blog-item-template.wxml" />
+<import src="../template/bloger-item/bloger-item-template.wxml" />
+<view class="my">
+  <view class="my-info">
+    <view class="my-avatar">
+      <image src="{{user.avatarUrl}}"></image>
+    </view>
+    <view class="my-box">
+      <text class="my-name">{{user.nickName}}</text>
+      <text class="iconfont iconnan my-gender-man" wx:if="{{user.gender == 1}}"></text>
+      <text class="iconfont iconnv my-gender-woman" wx:else></text>
+      <text class="my-set" catchtap="onSet">设置</text>
+    </view>
+    <view class="my-sign">
+      <text class="my-sign-title">我的签名：</text>
+      <text class="my-sign-content" wx:if="{{!user.sign}}">我的内心毫无波动，暂时什么都没留下。</text>
+      <text class="my-sign-content" wx:else>{{user.sign}}</text>
+    </view>
+  </view>
+  <view class="my-class">
+    <view class="my-collection" wx:if="{{collection}}" catchtap="onCollection">我的收藏</view>
+    <view class="my-collection my-class-select" wx:else catchtap="onCollection">我的收藏</view>
+    <view class="my-subscribe" wx:if="{{subscribe}}" catchtap="onSubscribe">我的关注</view>
+    <view class="my-subscribe my-class-select" wx:else catchtap="onSubscribe">我的关注</view>
+    <view class="my-comment" wx:if="{{comment}}" catchtap="onComment">我的评论</view>
+    <view class="my-comment my-class-select" wx:else catchtap="onComment">我的评论</view>
+    <view class="my-history" wx:if="{{history}}" catchtap="onHistory">我的历史</view>
+    <view class="my-history my-class-select" wx:else catchtap="onHistory">我的历史</view>
+  </view>
+  <view class="my-content" wx:if="{{isShow}}">这里什么都没有...</view>
+  <view wx:else>
+    <view wx:if="{{subShow}}">
+      <block wx:for="{{contents}}" wx:key="key" wx:for-item="item">
+        <template is="blogItem" data="{{...item}}" />
+      </block>
+    </view>
+    <view wx:else>
+      <block wx:for="{{blogers}}" wx:key="key" wx:for-item="item">
+        <template is="blogerItem" data="{{...item}}" />
+      </block>
+    </view>
+  </view>
+</view>
